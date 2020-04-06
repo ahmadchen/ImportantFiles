@@ -1,0 +1,24 @@
+@echo off 
+echo DeichCleaner 
+net file 1>NUL 2>NUL
+if not '%errorlevel%' == '0' ( 
+   powershell Start-Process -FilePath "%0" -ArgumentList "%cd%" -verb runas >NUL 2>&1
+   exit /b 
+) 
+echo Ok, ab gehts.
+cd %AppData%>NUL
+cd..>NUL
+cd Local>NUL
+cd Microsoft\Windows\Explorer>NUL
+del /f /Q *.db>NUL
+cd C:\Windows\Temp>NUL
+del /f /Q *.*>NUL
+cd %AppData%>NUL
+cd..>NUL
+cd Local\Temp>NUL
+del /f /Q *.*>NUL
+cd C:\Windows\Offline Web Pages>NUL
+del /f /Q *.*>NUL
+cd C:\Windows\Prefetch>NUL
+del /f /Q *.*>NUL
+EXIT
